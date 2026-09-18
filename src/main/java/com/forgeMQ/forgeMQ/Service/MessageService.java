@@ -1,5 +1,7 @@
 package com.forgeMQ.forgeMQ.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.forgeMQ.forgeMQ.DTOs.PublishMessageRequestDTO;
@@ -22,4 +24,9 @@ public class MessageService {
         return messageRepository.save(message);
     }
     
+    public List<Message> getMessagesByTopic(String topicName) {
+        Topic topic = topicRepository.findByName(topicName)
+                .orElseThrow(() -> new RuntimeException("Topic with name " + topicName + " not found"));
+        return messageRepository.findAllByTopic(topic);
+    }
 }
