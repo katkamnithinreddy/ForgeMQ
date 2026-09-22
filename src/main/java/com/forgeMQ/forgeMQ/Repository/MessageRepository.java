@@ -10,5 +10,7 @@ import com.forgeMQ.forgeMQ.Entity.Topic;
 public interface MessageRepository extends JpaRepository<Message, Long> {
 
     List<Message> findAllByTopic(Topic topic);
+    List<Message> findByIdGreaterThan(Long id);
+    List<Message> findByTopicAndIdGreaterThan(Topic topic, Long offset);
     
 }
