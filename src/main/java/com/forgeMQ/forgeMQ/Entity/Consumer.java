@@ -22,6 +22,10 @@ public class Consumer {
     @ManyToOne 
     @JoinColumn (name = "topic_id", nullable = false)
     private Topic topic;
+
+    @ManyToOne 
+    @JoinColumn (name = "consumer_group_id")
+    private ConsumerGroup consumerGroup;
     @Column (nullable = false)
     private LocalDateTime createdAt;
 
@@ -56,5 +60,12 @@ public class Consumer {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+    public ConsumerGroup getConsumerGroup() {
+        return consumerGroup;
+    }
+    public void setConsumerGroup(ConsumerGroup consumerGroup) {
+        this.consumerGroup = consumerGroup;
+    }
+
 
 }

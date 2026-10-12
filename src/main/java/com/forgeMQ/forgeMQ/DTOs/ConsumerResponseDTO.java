@@ -3,6 +3,7 @@ package com.forgeMQ.forgeMQ.DTOs;
 import com.forgeMQ.forgeMQ.Entity.Topic;
 
 public class ConsumerResponseDTO {
+    private Long id;
     private String name;
     private Topic topic;
     private String createdAt;
@@ -13,6 +14,18 @@ public class ConsumerResponseDTO {
         this.name = name;
         this.topic = topic;
         this.createdAt = createdAt;
+    }
+    public ConsumerResponseDTO(Long id, String name, Topic topic, String createdAt) {
+        this.id = id;
+        this.name = name;
+        this.topic = topic;
+        this.createdAt = createdAt;
+    }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
     public String getName() {
         return name;

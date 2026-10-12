@@ -9,6 +9,8 @@ public class ConsumerRequestDTO {
     private String name;
     @NotBlank
     private String topicname;
+    @NotBlank 
+    private String consumerGroupName;
     
     public String getName() {
         return name;
@@ -22,4 +24,10 @@ public class ConsumerRequestDTO {
     public void setTopicname(String topicname) {
         this.topicname = topicname;
     }
+    public String getConsumerGroupName() {
+        return consumerGroupName;
+    }
+    public void setConsumerGroupName(String consumerGroupName) {
+        this.consumerGroupName = consumerGroupName;
+    }   
 }

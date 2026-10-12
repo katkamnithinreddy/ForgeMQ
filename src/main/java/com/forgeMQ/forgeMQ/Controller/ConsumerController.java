@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.forgeMQ.forgeMQ.DTOs.AckRequestDTO;
 import com.forgeMQ.forgeMQ.DTOs.ConsumerRequestDTO;
 import com.forgeMQ.forgeMQ.DTOs.ConsumerResponseDTO;
 import com.forgeMQ.forgeMQ.Entity.Message;
@@ -48,6 +50,23 @@ public class ConsumerController {
         return ResponseEntity.ok().body(messages);
     }
 
+    @DeleteMapping ("/consumers/{consumerId}")
+    public ResponseEntity<Void> deleteConsumer(@PathVariable Long consumerId) {
+        consumerService.deleteConsumer(consumerId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping ("/consumers/{consumerId}/ack")
+    public ResponseEntity<String> acknowledgeMessages(@PathVariable Long consumerId,@Valid @RequestBody AckRequestDTO ackRequestDTO) {
+        consumerService.acknowledgeMessages(consumerId, ackRequestDTO);
+        return ResponseEntity.ok().body("Messages acknowledged for consumer with id: " + consumerId);
+    }
+
+    @PostMapping ("/consumers/{consumerId}/nack")
+    public ResponseEntity<String> negativeAcknowledgeMessages(@PathVariable Long consumerId,@Valid @RequestBody AckRequestDTO ackRequestDTO) {
+        consumerService.negativeAcknowledgeMessages(consumerId, ackRequestDTO);
+        return ResponseEntity.ok().body("Messages negatively acknowledged for consumer with id: " + consumerId);
+    }
 
     
 }

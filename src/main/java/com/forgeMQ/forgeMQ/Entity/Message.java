@@ -26,6 +26,8 @@ public class Message {
     @Column (nullable = false)
     private LocalDateTime createdAt;
 
+    private int retryCount;
+
     public Message() {
     }
     public Message(Topic topic, String payload) {
@@ -56,6 +58,12 @@ public class Message {
     }
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+    public int getRetryCount() {
+        return retryCount;
+    }
+    public void setRetryCount(int retryCount) {
+        this.retryCount = retryCount;
     }
 
 
