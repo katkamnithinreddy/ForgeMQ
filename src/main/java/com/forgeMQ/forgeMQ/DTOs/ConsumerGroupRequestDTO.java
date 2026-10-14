@@ -4,10 +4,10 @@ import jakarta.validation.constraints.NotBlank;
 
 public class ConsumerGroupRequestDTO {
     @NotBlank  (message = "Name must not be blank")
-    private String names;
+    private String name;
 
     public String getName() {
-        return names;
+        return name;
     }
 
 }

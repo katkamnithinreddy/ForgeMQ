@@ -23,6 +23,9 @@ public class Message {
     private Topic topic;
     @Column (nullable = false, columnDefinition = "TEXT")
     private String payload;
+    @ManyToOne 
+    @JoinColumn (name = "partition_id")
+    private Partition partition;
     @Column (nullable = false)
     private LocalDateTime createdAt;
 
@@ -64,6 +67,12 @@ public class Message {
     }
     public void setRetryCount(int retryCount) {
         this.retryCount = retryCount;
+    }
+    public Partition getPartition() {
+        return partition;
+    }
+    public void setPartition(Partition partition) {
+        this.partition = partition;
     }
 
 
